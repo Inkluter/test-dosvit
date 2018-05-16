@@ -1,3 +1,8 @@
+@import "reset.css";
+
+
+
+
 /* ---- main
 ----------------- */
 
@@ -62,9 +67,6 @@ body {
   position: relative;
 }
 .search-list-item .thumb {
-  width: 150px;
-  height: 100px;
-  background: #000;
   float: left;
   margin-right: 10px;
 }
@@ -73,11 +75,13 @@ body {
 }
 .search-list-item .text .name {
   font-size: 18px;
+  margin-right: 120px;
 }
-.search-list-item .text .votes {
+.search-list-item .text .description {
   font-size: 12px;
   margin-top: 5px;
   color: #999;
+  margin-right: 120px;
 }
 .search-list-item .play-button {
   background: #4286f4;
@@ -90,7 +94,7 @@ body {
   line-height: 20px;
   border: 0 none;
   border-radius: 2px;
-  cursor: poiner;
+  cursor: pointer;
 }
 
 

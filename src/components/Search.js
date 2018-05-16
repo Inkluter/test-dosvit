@@ -1,37 +1,24 @@
 import React from 'react';
 
-
 class Search extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 0,
-    };
-  }
 
   render() {
+    console.log(this.props);
     return (
-      <div className="search-holder">
-        <input type="text" className="search-input" placeholder="Search on Youtube..." />
         <div className="search-list">
-          <div className="search-list-item">
-            <div className="thumb"></div>
-            <div className="text">
-              <div className="name">Video #1 Name</div>
-              <div className="votes">1151 Votes</div>
+          {this.props.videos.map((item, index) =>
+
+
+            <div className="search-list-item">
+              <img className="thumb" src={item.snippet.thumbnails.default.url}/>
+              <div className="text">
+                <div className="name">{item.snippet.title}</div>
+                <div className="description">{item.snippet.description}</div>
+              </div>
+              <button className="play-button">Play</button>
             </div>
-            <button className="play-button">Play</button>
-          </div>
-          <div className="search-list-item">
-            <div className="thumb"></div>
-            <div className="text">
-              <div className="name">Video #1 Name</div>
-              <div className="votes">1151 Votes</div>
-            </div>
-            <button className="play-button">Play</button>
-          </div>
+          )}
         </div>
-      </div>
     );
   }
 }
