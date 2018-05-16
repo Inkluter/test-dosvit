@@ -60,11 +60,13 @@ body {
   width: 100%;
   top: 100%;
   border: 1px solid #999;
+  background: #fff;
 }
 .search-list-item {
   padding: 15px;
   height: 130px;
   position: relative;
+  cursor: pointer;
 }
 .search-list-item .thumb {
   float: left;
