@@ -1,0 +1,131 @@
+/* ---- main
+----------------- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.content {
+  display: flex;
+}
+.content .history {
+  width: 25%;
+}
+
+
+
+
+
+
+
+
+
+/* ---- search
+----------------- */
+
+.search-holder {
+  margin-left: 25%;
+  margin-bottom: 40px;
+  position: relative;
+}
+.search-input {
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  font-size: 16px;
+  border-radius: 2px;
+  border: 1px solid #999;
+}
+.search-list {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  border: 1px solid #999;
+}
+.search-list-item {
+  padding: 15px;
+  height: 130px;
+  position: relative;
+}
+.search-list-item .thumb {
+  width: 150px;
+  height: 100px;
+  background: #000;
+  float: left;
+  margin-right: 10px;
+}
+.search-list-item .text {
+  margin: 0 10px;
+}
+.search-list-item .text .name {
+  font-size: 18px;
+}
+.search-list-item .text .votes {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #999;
+}
+.search-list-item .play-button {
+  background: #4286f4;
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 100px;
+  line-height: 20px;
+  border: 0 none;
+  border-radius: 2px;
+  cursor: poiner;
+}
+
+
+
+
+
+/* ---- history
+----------------- */
+.history {
+  padding: 0 15px;
+}
+.history-header {
+  font-size: 24px;
+}
+.history-list {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px;
+}
+.history-list-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.history-list-item:last-child {
+  margin-bottom: 0;
+}
+.history-list-item .delete-button {
+  color: #0645AD;
+  border: 0 none;
+  background: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.history-list-item .delete-button:hover {
+  text-decoration: none;
+}
