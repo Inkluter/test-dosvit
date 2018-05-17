@@ -2,15 +2,11 @@ import React from 'react';
 
 class Search extends React.Component {
 
-  playVideo(item) {
-    console.log(item)
-  }
-
   render() {
     return (
-        <div className="search-list">
+        <div className={"search-list " + this.props.className}>
           {this.props.videos.map((item, index) =>
-            <div className="search-list-item" onClick={() => this.playVideo(item)} key={index}>
+            <div className="search-list-item" onClick={(event) => this.props.setVideoID(item, event)} key={index}>
               <img className="thumb" src={item.snippet.thumbnails.default.url}/>
               <div className="text">
                 <div className="name">{item.snippet.title}</div>

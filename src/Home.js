@@ -43,27 +43,57 @@ class Home extends React.Component {
 
       request.execute(function(response) {
         that.setState( {videos:response.items} )
-        console.log(that.state.videos)
        });
     }
   }
 
+  findVideos() {
+
+  }
+
   handleBlur(event) {
     this.setState({
-      videos: []
+      searchHidden: true
     })
   }
-
-  setVideoID(id) {
+  handleFocus() {
     this.setState({
-      videoID: id
+      searchHidden: false
     })
   }
 
+  setVideoID(item, event) {
+    var history = this.state.history;
+    history.unshift(item)
+    this.setState({
+      videoID: item.id.videoId,
+      videos: [],
+      history: history
+    })
+    localStorage.setItem('test-dosvit-history', JSON.stringify(history));
+  }
 
+  removeVideo(index) {
+    var history = this.state.history;
+    history.splice(index, 1);
+    this.setState({ history: history });
+  }
 
   componentDidMount() {
     this.loadYoutubeApi();
+  }
+
+  componentWillMount() {
+    var history = localStorage.getItem('test-dosvit-history')
+    if (history) {
+      this.setState({
+        history: JSON.parse(history)
+      })
+    } else {
+      this.setState({
+        history: []
+      })
+    }
   }
 
   constructor() {
@@ -71,11 +101,13 @@ class Home extends React.Component {
     this.state = {
       searchString: '',
       videos: [],
-      videoID: '2g811Eo7K8U'
+      videoID: '2g811Eo7K8U',
+      searchHidden: <true></true>
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   render() {
@@ -83,7 +115,6 @@ class Home extends React.Component {
           height: '390',
           width: '640',
         };
-
     return (
       <main className="main">
         <div className="search-holder">
@@ -92,14 +123,23 @@ class Home extends React.Component {
           debounceTimeout={300}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
           className="search-input"
           placeholder="Search on Youtube..." />
 
-        { this.state.videos.length > 0 ? <Search setVideoID={this.setVideoID} videos={this.state.videos} /> : null }
+          <Search
+            setVideoID={this.setVideoID.bind(this)}
+            videos={this.state.videos}
+            className={(this.state.searchHidden ? 'hidden' : 'show')} />
+
 
         </div>
         <div className="content">
-          <History></History>
+          <History
+            history={this.state.history}
+            removeVideo={this.removeVideo.bind(this)}
+            setVideoID={this.setVideoID.bind(this)} >
+          </History>
           <div className="video-holder">
             <YouTube videoId={this.state.videoID} opts={opts} onReady={this._onReady} />
           </div>
