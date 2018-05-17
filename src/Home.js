@@ -47,15 +47,13 @@ class Home extends React.Component {
     }
   }
 
-  findVideos() {
-
-  }
-
-  handleBlur(event) {
+  hideSearchList() {
     this.setState({
       searchHidden: true
     })
+    console.log(11)
   }
+
   handleFocus() {
     this.setState({
       searchHidden: false
@@ -77,6 +75,7 @@ class Home extends React.Component {
     var history = this.state.history;
     history.splice(index, 1);
     this.setState({ history: history });
+    localStorage.setItem('test-dosvit-history', JSON.stringify(history));
   }
 
   componentDidMount() {
@@ -106,7 +105,6 @@ class Home extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
   }
 
@@ -122,7 +120,6 @@ class Home extends React.Component {
           minLength={2}
           debounceTimeout={300}
           onChange={this.handleChange}
-          onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           className="search-input"
           placeholder="Search on Youtube..." />
@@ -130,7 +127,8 @@ class Home extends React.Component {
           <Search
             setVideoID={this.setVideoID.bind(this)}
             videos={this.state.videos}
-            className={(this.state.searchHidden ? 'hidden' : 'show')} />
+            className={(this.state.searchHidden ? 'hidden' : 'show')}
+            hideSearchList={this.hideSearchList.bind(this)} />
 
 
         </div>
